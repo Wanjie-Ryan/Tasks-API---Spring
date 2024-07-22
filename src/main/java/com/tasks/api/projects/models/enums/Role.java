@@ -1,4 +1,4 @@
-package com.tasks.api.projects.models;
+package com.tasks.api.projects.models.enums;
 
 public enum Role {
 
