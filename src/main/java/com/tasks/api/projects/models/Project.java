@@ -27,9 +27,10 @@ public class Project {
     private String name;
     @NotBlank(message = "Project Description is Required")
     private String description;
-    @NotNull(message = "Project Status is Required")
-    @Enumerated(EnumType.STRING)
-    private ProjectStatus status = ProjectStatus.Pending;
+    @NotNull(message = "Project Completion Status is Required")
+//    @Enumerated(EnumType.STRING)
+//    private ProjectStatus status = ProjectStatus.Pending;
+    private Boolean completed = false;
     @NotNull(message = "Admin is Required")
     @ManyToOne
     @JoinColumn(name="admin_id", nullable = false)
