@@ -3,9 +3,12 @@ package com.tasks.api.projects.service;
 import com.tasks.api.projects.configs.JwtService;
 import com.tasks.api.projects.models.Auth;
 import com.tasks.api.projects.repository.AuthRepository;
+import com.tasks.api.projects.service.DTO.LoginResponseDTO;
 import com.tasks.api.projects.service.DTO.RegisterResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +40,19 @@ public class AuthService {
         responseDto.setRole(savedAuth.getRole().toString());
 
         return responseDto;
+
+
+    }
+
+    public LoginResponseDTO login (String email, String password){
+
+        Authentication auths = authManager.authenticate(new UsernamePasswordAuthenticationToken(email,password));
+
+        Auth auth = (Auth) auths.getPrincipal();
+        String jwtToken = jwtService.generateToken(auth);
+
+
+        return new LoginResponseDTO(auth.getEmail(), jwtToken);
 
 
     }
