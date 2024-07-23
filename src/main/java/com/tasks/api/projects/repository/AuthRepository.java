@@ -8,5 +8,10 @@ import java.util.UUID;
 
 public interface AuthRepository extends JpaRepository<Auth, UUID>{
 
+    // custom method to find user by email
     Optional<Auth> findByEmail(String email);
+
+    // custom method to find user by id
+    Optional <Auth> findUserById(UUID id);
+
 }
