@@ -29,7 +29,7 @@ public class Auth implements UserDetails {
     private UUID id;
     @NotBlank(message = "Name is Required")
     private String name;
-    @Email(regexp = "^[a-zA-Z0-9._%+-]+@gmail\\.com$", message = "Email should be valid and must be a gmail address")
+//    @Email(regexp = "^[a-zA-Z0-9._%+-]+@gmail\\.com$", message = "Email should be valid and must be a gmail address")
     @NotBlank(message = "Email is required")
     private String email;
     @NotBlank(message = "Password is required")
