@@ -60,7 +60,8 @@ public class Auth implements UserDetails {
 
     @Override
     public String getUsername() {
-        return String.valueOf(id);
+//        return String.valueOf(id);
+        return this.email;
     }
 
     @Override

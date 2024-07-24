@@ -18,7 +18,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private static final String Secret_key = "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTcyMDA3OTQyNiwiaWF0IjoxNzIwMDc5NDI2fQ.WQDomcG9AXavXxDJyPFD4avcI7arLaBFelSsbHf32Qk";
+    private static final String Secret_key = "eyJhbGciOiJIUzI1NiJ9eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTcyMDA3OTQyNiwiaWF0IjoxNzIwMDc5NDI2fQWQDomcG9AXavXxDJyPFD4avcI7arLaBFelSsbHf32Qk";
 
     public String extractUserId(String jwt) {
 

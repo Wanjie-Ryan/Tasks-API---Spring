@@ -27,15 +27,17 @@ public class AppConfig {
     @Bean
     // ensures that the input is a valid UUID
     public UserDetailsService userDetailsService(){
-        return userId ->{
-            try{
-                UUID uuid = UUID.fromString(userId);
-                return authRepo.findById(uuid).orElseThrow(()-> new UsernameNotFoundException("User not found"));
-            }
-            catch(IllegalArgumentException e){
-                throw new UsernameNotFoundException("Invalid User Id");
-            }
-        };
+//        return userId ->{
+//            try{
+//                UUID uuid = UUID.fromString(userId);
+//                return authRepo.findById(uuid).orElseThrow(()-> new UsernameNotFoundException("User not found"));
+//            }
+//            catch(IllegalArgumentException e){
+//                throw new UsernameNotFoundException("Invalid User Id");
+//            }
+//        };
+        return email -> authRepo.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
     }
 
     @Bean
