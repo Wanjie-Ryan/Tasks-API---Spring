@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ProjectResponseDTO {
 
+    private String message;
     private String name;
     private String description;
     private Boolean completed;
