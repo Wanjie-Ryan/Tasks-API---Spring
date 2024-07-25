@@ -5,6 +5,7 @@ import com.tasks.api.projects.models.Project;
 import com.tasks.api.projects.repository.ProjectRepository;
 import com.tasks.api.projects.service.DTO.DeleteProjectResponseDTO;
 import com.tasks.api.projects.service.DTO.ProjectResponseDTO;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,11 +55,11 @@ public class ProjectAdminService {
     }
 
     // method to get a project by its id
-    public Project getProjectById(UUID id) throws Exception{
+    public Project getProjectById(UUID id) throws EntityNotFoundException {
 
         Optional<Project> getProject = projectRepo.findById(id);
         if(getProject.isEmpty()){
-            throw new Exception("Project not found");
+            throw new EntityNotFoundException("Project of id " + id + " not found");
 
         }
 
@@ -67,7 +68,7 @@ public class ProjectAdminService {
     }
 
     // method to delete a project
-    public DeleteProjectResponseDTO deleteProject (UUID id) throws Exception{
+    public DeleteProjectResponseDTO deleteProject (UUID id) throws EntityNotFoundException{
 
         Project project = getProjectById(id);
 
@@ -85,7 +86,7 @@ public class ProjectAdminService {
 
     // method to update a project
 
-    public ProjectResponseDTO updateProject(UUID id, Project project)throws Exception{
+    public ProjectResponseDTO updateProject(UUID id, Project project)throws EntityNotFoundException{
 
         Project updateProject = getProjectById(id);
 
@@ -108,7 +109,24 @@ public class ProjectAdminService {
     }
 
 
-    // method to search for a  project
+    // method to search for a  project by its name
+
+    public List<Project> searchProjectByName(String projectname){
+        List<Project> getProjects = projectRepo.searchProjectName(projectname);
+        return getProjects;
+    }
+
+    // method to search for a project by the name of the admin
+    public List<Project> searchProjectByadminName(String adminname){
+        List<Project> getProjects = projectRepo.searchProjectByAdminname(adminname);
+        return getProjects;
+    }
+
+    // method to filter projects based on their status
+    public List<Project> filterProjectsByStatus(boolean completed){
+        List<Project> getProjects = projectRepo.filterProjectsByStatus(completed);
+        return getProjects;
+    }
 
 
 
