@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RegisterResponseDTO {
 
+    private String message;
     private String name;
     private String email;
     private String role;

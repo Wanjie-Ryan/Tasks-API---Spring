@@ -51,6 +51,7 @@ public class AuthService {
 
         Auth savedAuth = authRepo.save(registerAuth);
         RegisterResponseDTO responseDto = new RegisterResponseDTO();
+        responseDto.setMessage("Registration Successful");
         responseDto.setName(savedAuth.getName());
         responseDto.setEmail(savedAuth.getEmail());
         responseDto.setRole(savedAuth.getRole().toString());
