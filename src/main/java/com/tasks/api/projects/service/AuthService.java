@@ -73,8 +73,12 @@ public class AuthService {
         Auth auth = (Auth) auths.getPrincipal();
         String jwtToken = jwtService.generateToken(auth);
 
-
-        return new LoginResponseDTO(auth.getEmail(), jwtToken);
+        LoginResponseDTO response = new LoginResponseDTO();
+        response.setEmail(auth.getEmail());
+        response.setToken(jwtToken);
+        response.setMessage("Login Successful");
+        response.setRole(auth.getRole().toString());
+        return response;
 
 
     }

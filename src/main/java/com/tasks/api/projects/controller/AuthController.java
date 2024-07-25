@@ -38,6 +38,7 @@ public class AuthController {
     public ResponseEntity<LoginResponseDTO> login(@RequestBody Auth auth ) throws Exception{
 //        try{
             LoginResponseDTO response = authService.login(auth.getEmail(), auth.getPassword());
+
             return ResponseEntity.status(HttpStatus.OK).body(response);
 //        }
 //        catch(Exception e){
