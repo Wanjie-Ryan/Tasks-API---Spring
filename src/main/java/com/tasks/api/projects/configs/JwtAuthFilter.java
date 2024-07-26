@@ -23,6 +23,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
+    @Autowired
     private UserDetailsService userDetailsService;
 
     @Autowired

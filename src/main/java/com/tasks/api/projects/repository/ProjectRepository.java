@@ -19,5 +19,6 @@ public interface ProjectRepository extends JpaRepository<Project, UUID> {
     List<Project> searchProjectByAdminname(@Param("adminname") String adminname);
 
     // custom method to filter projects by those completed and those that are not
+    @Query("SELECT p FROM Project p WHERE p.completed = ?1")
     List<Project> filterProjectsByStatus(boolean completed);
 }

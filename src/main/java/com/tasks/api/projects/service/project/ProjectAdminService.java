@@ -123,8 +123,8 @@ public class ProjectAdminService {
     }
 
     // method to filter projects based on their status
-    public List<Project> filterProjectsByStatus(boolean completed){
-        List<Project> getProjects = projectRepo.filterProjectsByStatus(completed);
+    public List<Project> filterProjectsByStatus(boolean status){
+        List<Project> getProjects = projectRepo.filterProjectsByStatus(status);
         return getProjects;
     }
 
