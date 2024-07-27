@@ -40,7 +40,8 @@ public class Project {
     @NotNull(message = "Project creation time is required")
     private LocalDateTime createdAt;
     @NotNull(message = "Project Deadline is required")
-    private LocalDateTime deadline;
+//    private LocalDateTime deadline;
+    private String deadline;
 
     @PrePersist
     public void prePersist() {

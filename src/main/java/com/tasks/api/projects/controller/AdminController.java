@@ -12,12 +12,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {
+
+    private static final Logger logger = Logger.getLogger(AdminController.class.getName());
 
     @Autowired
     private ProjectAdminService adminService;
@@ -31,20 +38,72 @@ public class AdminController {
     @PostMapping("/create")
     public ResponseEntity<ProjectResponseDTO> createProject(@RequestBody Project project, @RequestHeader("Authorization") String token)throws Exception{
 
-        String jwt = token.substring(7);
+//        String pattern = "yyyy-MM-dd'T'HH:mm:ss";
+
+        // Step 2: Create a DateTimeFormatter instance
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+
+        // Step 3: Parse the string to LocalDateTime
+//        String dateTimeString = String.valueOf(project.getDeadline());
+//        LocalDateTime localDateTime = LocalDateTime.parse(dateTimeString, formatter);
+
+//        project.setDeadline(localDateTime);
+
+//        String jwt = token.substring(7);
+//        String email = jwtService.extractUserId(jwt);
+
+        logger.info("Authorization header: " + token);
+        System.out.println("Received token: " + token);
+        // Ensure token is in the correct format
+        String jwt = token.startsWith("Bearer ") ? token.substring(7) : token;
+
+        // Extract email from the JWT token
         String email = jwtService.extractUserId(jwt);
+        logger.info("Extracted email: " + email);
+
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
         if (!jwtService.isTokenvalid(jwt, userDetails)) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
+        List<String> roles = (List<String>) jwtService.extractAllClaims(jwt).get("roles");
         Auth auth = new Auth();
         auth.setEmail(email);
 
+        String rolesString = roles.stream().collect(Collectors.joining(", "));
         ProjectResponseDTO createdProject = adminService.createProject(project, auth);
         return new ResponseEntity<>(createdProject, HttpStatus.CREATED);
     }
+
+    @GetMapping
+    public ResponseEntity<String> hello(@RequestHeader("Authorization") String token) {
+        String jwt = token.substring(7);
+
+        // Extract user email (or username) from the token
+        String email = jwtService.extractUserId(jwt);
+
+        // Load the user details using the extracted email
+        UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+
+        // Validate the token
+        if (!jwtService.isTokenvalid(jwt, userDetails)) {
+            return ResponseEntity.status(403).body("Invalid token");
+        }
+
+        // Extract roles from the token
+//        List<String> roles = (List<String>) jwtService.extractAllClaims(jwt).get("roles");
+
+        // Assuming the Auth model represents the authenticated user
+        Auth auth = new Auth();
+        auth.setEmail(email);
+
+        // Print roles for demonstration
+//        String rolesString = roles.stream().collect(Collectors.joining(", "));
+
+        return ResponseEntity.ok("Hello " + email + " with roles: " );
+    }
+
 
 
 

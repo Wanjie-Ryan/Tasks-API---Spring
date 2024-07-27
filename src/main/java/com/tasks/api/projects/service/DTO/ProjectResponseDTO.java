@@ -18,7 +18,7 @@ public class ProjectResponseDTO {
     private Boolean completed;
     private String admin;
     private LocalDateTime createdAt;
-    private LocalDateTime deadline;
+    private String deadline;
 
 
 }

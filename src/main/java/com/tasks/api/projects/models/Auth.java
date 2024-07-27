@@ -47,6 +47,11 @@ public class Auth implements UserDetails {
         }
     }
 
+    public Auth (String email) {
+        this.email = email;
+
+    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
