@@ -1,6 +1,5 @@
 package com.tasks.api.projects.controller;
 
-import com.tasks.api.projects.configs.JwtService;
 import com.tasks.api.projects.models.Auth;
 import com.tasks.api.projects.models.Project;
 import com.tasks.api.projects.service.DTO.ProjectResponseDTO;
@@ -12,9 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import java.util.List;

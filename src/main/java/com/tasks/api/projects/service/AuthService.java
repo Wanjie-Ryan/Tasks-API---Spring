@@ -1,6 +1,5 @@
 package com.tasks.api.projects.service;
 
-import com.tasks.api.projects.configs.JwtService;
 import com.tasks.api.projects.models.Auth;
 import com.tasks.api.projects.repository.AuthRepository;
 import com.tasks.api.projects.service.DTO.LoginResponseDTO;
