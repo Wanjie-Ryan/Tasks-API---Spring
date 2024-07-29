@@ -1,5 +1,6 @@
 package com.tasks.api.projects.service;
 
+import com.tasks.api.projects.configs.JwtTokenUtil;
 import com.tasks.api.projects.models.Auth;
 import com.tasks.api.projects.repository.AuthRepository;
 import com.tasks.api.projects.service.DTO.LoginResponseDTO;
@@ -24,7 +25,7 @@ public class AuthService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private JwtService jwtService;
+    private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
     private AuthenticationManager authManager;
@@ -71,7 +72,7 @@ public class AuthService {
         Authentication auths = authManager.authenticate(new UsernamePasswordAuthenticationToken(email,password));
 
         Auth auth = (Auth) auths.getPrincipal();
-        String jwtToken = jwtService.generateToken(auth);
+        String jwtToken = jwtTokenUtil.generateToken(auth);
 
         LoginResponseDTO response = new LoginResponseDTO();
         response.setEmail(auth.getEmail());

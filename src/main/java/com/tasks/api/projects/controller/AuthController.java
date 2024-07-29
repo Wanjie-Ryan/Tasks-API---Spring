@@ -44,6 +44,15 @@ public class AuthController {
 //        catch(Exception e){
 //            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 //        }
+
+//        try {
+//            LoginResponseDTO response = authService.login(auth.getEmail(), auth.getPassword());
+//            return ResponseEntity.status(HttpStatus.OK).body(response);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponseDTO(null, null, e.getMessage(), null));
+//        }
+
+
     }
 
     @ExceptionHandler(Exception.class)
